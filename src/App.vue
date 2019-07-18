@@ -12,11 +12,11 @@
         @touchmove="draw('touch', $event)"
       ></canvas>
     </div>
-    <div>
+    <div class="btn-wrapper">
       <a :href="imageUrl" download="signature.png" @click="saveCanvas">
-        <button>Save</button>
+        <button class="btn">Save</button>
       </a>
-      <button @click="clearCanvas">Clear</button>
+      <button class="btn" @click="clearCanvas">Clear</button>
     </div>
   </div>
 </template>
@@ -76,8 +76,8 @@ export default {
 
     clearCanvas() {
       const canvas = this.$refs['my-canvas']
-      // this.ctx.clearRect(0, 0, canvas.width, canvas.height)
-      canvas.width = canvas.width
+      this.ctx.clearRect(0, 0, canvas.width, canvas.height)
+      this.ctx.beginPath()
     },
 
     saveCanvas() {
@@ -111,7 +111,7 @@ body {
 .canvas-wrapper {
   width: 100%;
   height: 200px;
-  margin-top: 20px;
+  margin: 20px 0;
   border: 1px dashed lightblue;
 }
 
@@ -122,5 +122,39 @@ body {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+
+.btn-wrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  box-shadow: 0px 10px 14px -7px #276873;
+  background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+  background-color: #599bb3;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #3d768a;
+}
+
+.btn:hover {
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+  background-color: #408c99;
+}
+
+.btn:active {
+  position: relative;
+  top: 1px;
 }
 </style>
